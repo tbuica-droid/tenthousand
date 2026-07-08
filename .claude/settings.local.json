@@ -17,7 +17,10 @@
       "Bash(npm install *)",
       "Bash(npm test *)",
       "Bash(git rm *)",
-      "Bash(gh api *)"
+      "Bash(gh api *)",
+      "Bash(git check-ignore *)",
+      "Bash(open *)",
+      "Skill(claude-api)"
     ]
   },
   "disabledMcpjsonServers": [

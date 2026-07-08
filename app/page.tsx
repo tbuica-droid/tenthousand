@@ -6,13 +6,16 @@ import {
   simulateCompetition,
 } from "@/lib/engine";
 import { WhatIf } from "@/components/what-if";
+import { InsightCard } from "@/lib/insights";
 import competitionJson from "@/data/competitions/world-cup-2026.json";
 import ratingsJson from "@/data/teams.json";
 import resultsJson from "@/data/results.json";
+import insightsJson from "@/data/insights.json";
 
 const competition = competitionJson as Competition;
 const ratings = ratingsJson as EloRatings;
 const results = resultsJson as MatchResult[];
+const insights = insightsJson as unknown as InsightCard[];
 
 export default function Home() {
   // Runs once at build time; the page ships as static HTML with numbers in it.
@@ -33,6 +36,7 @@ export default function Home() {
           ratings={ratings}
           results={results}
           initialOutput={initialOutput}
+          insights={insights}
         />
 
         <footer className="mt-16 border-t border-zinc-800 pt-6 pb-8 text-xs text-zinc-500">

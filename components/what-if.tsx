@@ -14,7 +14,9 @@ import {
   simulateCompetition,
 } from "@/lib/engine";
 import { knownWinners, prunePins, remainingTeams } from "@/lib/bracket-view";
+import { InsightCard } from "@/lib/insights";
 import { Bracket } from "./bracket";
+import { Insights } from "./insights";
 import { TitleChances, TitleRow } from "./title-chances";
 
 interface WhatIfProps {
@@ -22,9 +24,10 @@ interface WhatIfProps {
   ratings: EloRatings;
   results: MatchResult[];
   initialOutput: SimulationOutput;
+  insights: InsightCard[];
 }
 
-export function WhatIf({ competition, ratings, results, initialOutput }: WhatIfProps) {
+export function WhatIf({ competition, ratings, results, initialOutput, insights }: WhatIfProps) {
   const [pins, setPins] = useState<Record<string, string>>({});
   const pinsActive = Object.keys(pins).length > 0;
 
@@ -66,6 +69,8 @@ export function WhatIf({ competition, ratings, results, initialOutput }: WhatIfP
         </h2>
         <TitleChances rows={titleRows} pinsActive={pinsActive} />
       </section>
+
+      <Insights cards={insights} />
 
       <section>
         <div className="mb-3 flex items-baseline justify-between">
