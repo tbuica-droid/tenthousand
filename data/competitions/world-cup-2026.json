@@ -1,0 +1,42 @@
+{
+  "id": "world-cup-2026",
+  "name": "World Cup 2026",
+  "format": "knockout",
+  "homeAdvantage": false,
+  "teams": [
+    "France",
+    "Morocco",
+    "Spain",
+    "Belgium",
+    "Norway",
+    "England",
+    "Argentina",
+    "Switzerland"
+  ],
+  "bracket": {
+    "rounds": [
+      {
+        "name": "Quarterfinals",
+        "matches": [
+          { "id": "QF1", "home": { "team": "France" }, "away": { "team": "Morocco" } },
+          { "id": "QF2", "home": { "team": "Spain" }, "away": { "team": "Belgium" } },
+          { "id": "QF3", "home": { "team": "Norway" }, "away": { "team": "England" } },
+          { "id": "QF4", "home": { "team": "Argentina" }, "away": { "team": "Switzerland" } }
+        ]
+      },
+      {
+        "name": "Semifinals",
+        "matches": [
+          { "id": "SF1", "home": { "winnerOf": "QF1" }, "away": { "winnerOf": "QF2" } },
+          { "id": "SF2", "home": { "winnerOf": "QF3" }, "away": { "winnerOf": "QF4" } }
+        ]
+      },
+      {
+        "name": "Final",
+        "matches": [
+          { "id": "F1", "home": { "winnerOf": "SF1" }, "away": { "winnerOf": "SF2" } }
+        ]
+      }
+    ]
+  }
+}
