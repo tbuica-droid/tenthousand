@@ -5,6 +5,7 @@ import {
   MatchResult,
   simulateCompetition,
 } from "@/lib/engine";
+import { ShareButton } from "@/components/share-button";
 import { WhatIf } from "@/components/what-if";
 import { InsightCard } from "@/lib/insights";
 import competitionJson from "@/data/competitions/world-cup-2026.json";
@@ -24,11 +25,14 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <main className="mx-auto w-full max-w-md px-4 pb-8 pt-10 sm:max-w-3xl">
-        <header className="mb-10">
-          <h1 className="text-3xl font-bold tracking-tight">TenThousand</h1>
-          <p className="mt-1 text-sm text-zinc-400">
-            Every match, simulated 10,000 times. Math shown.
-          </p>
+        <header className="mb-10 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">TenThousand</h1>
+            <p className="mt-1 text-sm text-zinc-400">
+              Every match, simulated 10,000 times. Math shown.
+            </p>
+          </div>
+          <ShareButton />
         </header>
 
         <WhatIf
