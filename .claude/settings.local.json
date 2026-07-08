@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --yes create-next-app@latest . --typescript --app --tailwind --eslint --no-src-dir --import-alias \"@/*\" --use-npm --yes)",
+      "Bash(npm run *)",
+      "Bash(git add *)"
+    ]
+  },
+  "disabledMcpjsonServers": [
+    "claude-flow"
+  ]
+}
