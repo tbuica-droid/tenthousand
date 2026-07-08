@@ -20,7 +20,8 @@
       "Bash(gh api *)",
       "Bash(git check-ignore *)",
       "Bash(open *)",
-      "Skill(claude-api)"
+      "Skill(claude-api)",
+      "Bash(npx tsx *)"
     ]
   },
   "disabledMcpjsonServers": [

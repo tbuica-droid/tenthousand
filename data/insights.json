@@ -1,8 +1,8 @@
 [
   {
     "matchId": "QF1",
-    "headline": "France Is Heavy Favorites, But Morocco's Path to the Final Is Wider Than You'd Think",
-    "body": "The model gives France a commanding 68.7% chance to win this quarterfinal and a 35.5% shot at the final — numbers that match the conventional narrative of a dominant side. What casual fans may underestimate is Morocco's structural resilience: the simulation still lands them in the final in 10.2% of all 10,000 runs, a non-trivial ceiling for a side rated 222 Elo points below their opponents. That gap between perception and probability is exactly where Morocco's 3.6% title chance quietly lives.",
+    "headline": "Morocco's upset would quietly crown a new favorite — just not Morocco",
+    "body": "France enter at 68.7% to win this match, but the simulation data reveals a striking downstream effect if Morocco pulls off the 31.3% shot: Spain's title probability jumps from 25.3% to 29.8%, making Spain the biggest beneficiary of a French exit. Morocco's own title chance would rise from 3.6% to 12.2%, a significant leap, yet Spain would still sit ahead of them in the title race even in that scenario.",
     "probabilities": {
       "France": 0.687,
       "Morocco": 0.313
@@ -11,12 +11,12 @@
       "France": 0.2,
       "Morocco": 0.0361
     },
-    "generatedAt": "2026-07-08T06:13:09.248Z"
+    "generatedAt": "2026-07-08T06:28:49.499Z"
   },
   {
     "matchId": "QF2",
-    "headline": "Spain's Path Looks Even Cleaner Than the Scoreline Suggests",
-    "body": "The model gives Spain a 69.3% chance of winning this quarterfinal, but the more telling number is what happens next: Spain reaches the final in 42.1% of all 10,000 simulations and claims the title in 25.3%. Casual fans may see Belgium as a dangerous dark horse, yet their title probability sits at just 4.9% — the Elo gap of 216 points between these sides (2177 vs. 1961) leaves little room for romantic narratives.",
+    "headline": "Spain is the tournament's top-rated team — and Belgium faces the steepest climb",
+    "body": "Spain's Elo of 2177 is the highest in the field, sitting 216 points clear of Belgium's 1961, and the simulations reflect that gap with Spain winning 69.3% of the time. Belgium's path to the title runs through a 30.7% chance here, and even then their title probability only reaches 16.6% — meaning the bracket beyond this match keeps their ceiling firmly in check.",
     "probabilities": {
       "Spain": 0.6931,
       "Belgium": 0.3069
@@ -25,12 +25,12 @@
       "Spain": 0.2533,
       "Belgium": 0.0491
     },
-    "generatedAt": "2026-07-08T06:13:13.772Z"
+    "generatedAt": "2026-07-08T06:28:49.499Z"
   },
   {
     "matchId": "QF3",
-    "headline": "England Dominate on Paper, But Norway Are No Quarter-Final Fodder",
-    "body": "Conventional wisdom says England, with a 104-point Elo advantage, should cruise past Norway — and the model largely agrees, giving them a 60.7% chance to advance. What might surprise casual fans is how often Norway flips the script: the simulation has them reaching the semifinal in 39.3% of 10,000 runs and lifting the trophy in 5.8%. Norway aren't here to make up the numbers — they're here to make England uncomfortable.",
+    "headline": "Norway vs England is the round's closest matchup by Elo, and penalties loom large",
+    "body": "With just 104 Elo points separating Norway (1972) and England (2076), this is the smallest gap of any quarterfinal, and the model gives this match a 26.5% chance of reaching penalties — higher than any of the other three quarterfinals. England are favored at 60.7%, but the shootup scenario alone accounts for more than one-in-four simulations.",
     "probabilities": {
       "Norway": 0.3927,
       "England": 0.6073
@@ -39,12 +39,12 @@
       "Norway": 0.0575,
       "England": 0.1304
     },
-    "generatedAt": "2026-07-08T06:13:18.060Z"
+    "generatedAt": "2026-07-08T06:28:49.499Z"
   },
   {
     "matchId": "QF4",
-    "headline": "Argentina Are Firm Favorites, But Switzerland's Path to Glory Is Wider Than It Looks",
-    "body": "The model gives Argentina a commanding 68.2% chance to advance past Switzerland, consistent with their Elo rating of 2156 — one of the tournament's highest. What casual fans may overlook is that Switzerland still converts their quarterfinal appearance into a final appearance 13.2% of the time across 10,000 simulations, a figure that reflects their structural resilience deep in tournaments. Argentina's 22.6% title probability makes them one of the simulation's strongest contenders, but Switzerland's 4.8% championship share is not the statistical rounding error their underdog status might suggest.",
+    "headline": "England and France stand to gain almost as much from a Switzerland win as Switzerland does",
+    "body": "If Switzerland's 31.8% chance materializes, their title probability climbs from 4.8% to 14.3% — but the ripple effects are nearly as consequential for others: England's title chance rises from 13.0% to 17.7% and France's from 20.0% to 22.3% with Argentina eliminated. Argentina enter as favorites at 68.2%, but a Swiss upset would reshape the entire SF2 bracket side, which currently holds a combined 46.1% title share.",
     "probabilities": {
       "Argentina": 0.6816,
       "Switzerland": 0.3184
@@ -53,6 +53,6 @@
       "Argentina": 0.2255,
       "Switzerland": 0.0481
     },
-    "generatedAt": "2026-07-08T06:13:22.868Z"
+    "generatedAt": "2026-07-08T06:28:49.499Z"
   }
 ]
