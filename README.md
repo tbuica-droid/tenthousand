@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tenthousand
 
-## Getting Started
+**Monte Carlo tournament simulation. Ten thousand runs, one set of probabilities.**
 
-First, run the development server:
+A knockout tournament has too few matches for intuition to be reliable. A team
+with a clear rating edge still loses a single match often enough that the
+bracket, not the ratings, decides most of the outcome. This simulates the whole
+tournament ten thousand times and reports how often each result actually
+happens.
+
+---
+
+## The model
+
+Each match is resolved in four steps, and every constant is stated here rather
+than buried in the code.
+
+**Elo to win expectancy.** Standard logistic form, `p = 1 / (1 + 10^(-diff/400))`.
+
+**Win expectancy to expected goals.** Total expected goals per match is fixed at
+**2.6** and split between the teams according to `p^0.4866`. That exponent is
+the model's single calibration constant. It was solved numerically so that a
+200-point Elo gap produces roughly a **67.5%** knockout win probability for the
+stronger side once draws are resolved — a figure the test suite verifies by
+simulation rather than assertion.
+
+**Expected goals to a scoreline.** Each team's goals are drawn from an
+independent Poisson distribution with its own expected-goals rate. Independence
+is a simplification: real scorelines are correlated, and this model does not
+capture that.
+
+**Level knockout matches.** Resolved by a penalty shootout model giving the
+higher-Elo team a **55%** edge — close to the near-coin-flip that shootouts
+empirically are, without making rating irrelevant.
+
+Home advantage adds **0.25** expected goals when a competition enables it. The
+World Cup config does not.
+
+---
+
+## Reproducibility
+
+The RNG is a seeded mulberry32 generator, so a given seed returns exactly the
+same ten thousand tournaments every time. Nothing in the engine touches
+`Math.random`. Change the seed and you get a different sample; keep it and
+results are byte-identical across machines.
+
+The engine is pure TypeScript with no dependency on Next.js, the browser, or
+Node, so the same code runs in tests, in scripts, and in the app.
+
+---
+
+## What it produces
+
+For every match in the bracket:
+
+- probability each team reaches it
+- probability each team wins it
+- probability it goes to penalties
+
+For every team: probability of reaching each round, and probability of winning
+the tournament.
+
+The test suite checks these are coherent — each match's outcome probabilities
+sum to 1, title probabilities across all teams sum to 1, and win probability
+increases monotonically with the Elo gap.
+
+---
+
+## Conditioning on what has happened
+
+Two mechanisms, both implemented the same way — a fixed outcome that every run
+must respect.
+
+**Results.** Completed matches in `data/results.json` are held fixed, so the
+simulation re-runs conditional on the tournament so far rather than from
+scratch.
+
+**What-if pins.** Pin any future match to a winner and re-simulate to see how
+the rest of the bracket moves. This is the most useful part of the tool: it
+isolates how much a single result is worth to every other team's title chance.
+
+---
+
+## Repository
+
+| Path | What it is |
+| --- | --- |
+| `lib/engine/` | The simulation. `match.ts` is the model, `rng.ts` the sampler, `knockout.ts` the bracket loop. |
+| `tests/engine.test.ts` | Calibration and coherence checks. |
+| `data/teams.json` | Elo ratings. |
+| `data/competitions/` | Bracket configs. |
+| `scripts/simulate.ts` | Run the simulation from the command line. |
+| `app/`, `components/` | The web front end. |
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm test          # calibration and coherence checks
+npm run simulate  # run the tournament simulation, print probabilities
+npm run dev       # start the app at localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run simulate` is the fastest way to see what the engine does without
+starting the front end.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Limitations
 
-## Learn More
+Worth stating plainly, since they bound what the output means.
 
-To learn more about Next.js, take a look at the following resources:
+- **Elo is the only input.** No squad, injury, form, rest, or venue data.
+- **Goals are independent Poisson draws.** Real scorelines are correlated and
+  slightly overdispersed relative to Poisson.
+- **The 55% shootout edge is assumed, not fitted.**
+- **Calibration is anchored to one target** — a 67.5% win rate at a 200-Elo gap.
+  It is not fitted across a range of gaps against historical results.
+- **Only knockout format is implemented.** The config and output shapes support
+  round-robin; the branch is not written.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+These are modeling choices, not bugs. Change the constants in `lib/engine/match.ts`
+and the whole output moves — that is the point of keeping them in one file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Note on the insight cards
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The commentary cards in the app are generated by `scripts/generate-insights.ts`
+using the Anthropic API, and written to `data/insights.json`. They are
+narrative over the numbers the engine produces. The simulation itself involves
+no language model.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Built by Tomas Buica. MIT.
